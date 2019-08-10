@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Thêm công việc</title>
+</head>
+<body>
+<p><a href="/home">Quay lại trang quản lý</a></p>
+<h2>Thêm công việc </h2>
+<div>
+    <form th:action="@{/save-task}" th:object="${task}" method="post">
+        <table>
+            <tr>
+                <td>Tên:</td>
+                <td><input type="text" th:field="*{name}"></td>
+                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+                <br>
+            </tr>
+            <tr>
+                <td>Thời gian:</td>
+                <td><input type="date" th:field="*{time}"></td>
+                <td th:if="${#fields.hasErrors('time')}" th:errors="*{time}">time Error</td>
+                <br>
+            </tr>
+            <tr>
+                <td>Trạng th:</td>
+                <td><input type="text" th:field="*{status}"></td>
+                <td th:if="${#fields.hasErrors('status')}" th:errors="*{status}">status Error</td>
+                <br>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Lưu">
+                    <a href="/home">Hủy</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

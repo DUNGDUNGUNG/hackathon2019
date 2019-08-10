@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Quản lí công việc </title>
+</head>
+<body>
+<h2>Quản lí công việc </h2>
+<nav>
+    <a href="/create-task">+ Thêm công việc</a>
+</nav>
+<div class="searchName">
+    <form action="">
+        <input type="text" name="searchName">
+        <input type="submit" value="Tìm">
+    </form>
+</div>
+<div>
+    <table style="border: 1px silver solid">
+        <tr>
+            <th>STT</th>
+            <th>Tên</th>
+            <th>Thời gian</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+        </tr>
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.count}"></td>
+            <td th:text="${task.name}"></td>
+            <td th:text="${task.getTime()}"></td>
+            <td th:text="${task.status}"></td>
+            <td>
+                <a th:href="@{/edit-task/__${task.getId()}__}">Sửa</a>
+                <a th:href="@{/delete-task/__${task.getId()}__}">Xóa</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
